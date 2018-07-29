@@ -26,12 +26,15 @@ public class ExerciseAdmin {
             switch (choice){
                 case "add":
                     addExercise();
+                    getString("Press any key to continue");
                     break;
                 case "edit":
                     editExercise();
+                    getString("Press any key to continue");
                     break;
                 case "delete":
                     deleteExercise();
+                    getString("Press any key to continue");
                     break;
                 case "quit":
                     exit = true;
@@ -39,6 +42,7 @@ public class ExerciseAdmin {
                     break;
                 default:
                     System.out.println("\nInvalid action, please try again\n");
+                    getString("Press any key to continue");
             }
         }
     }

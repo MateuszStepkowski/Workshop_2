@@ -25,9 +25,12 @@ public class SolutionAdmin {
             switch (choice){
                 case "add":
                     addSolution();
+                    getString("Press any key to continue");
+
                     break;
                 case "view":
                     displaySolutionsOfUser();
+                    getString("Press any key to continue");
                     break;
                 case "quit":
                     exit = true;
@@ -35,6 +38,7 @@ public class SolutionAdmin {
                     break;
                 default:
                     System.out.println("\nInvalid action, please try again\n");
+                    getString("Press any key to continue");
             }
         }
     }

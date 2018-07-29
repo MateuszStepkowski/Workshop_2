@@ -26,12 +26,15 @@ public class GroupAdmin {
             switch (choice){
                 case "add":
                     addGroup();
+                    getString("Press any key to continue");
                     break;
                 case "edit":
                     editGroup();
+                    getString("Press any key to continue");
                     break;
                 case "delete":
                     deleteGroup();
+                    getString("Press any key to continue");
                     break;
                 case "quit":
                     exit = true;
@@ -39,6 +42,7 @@ public class GroupAdmin {
                     break;
                 default:
                     System.out.println("\nInvalid action, please try again\n");
+                    getString("Press any key to continue");
             }
         }
     }

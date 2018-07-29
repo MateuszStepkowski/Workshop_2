@@ -26,12 +26,15 @@ public class UserAdmin {
             switch (choice){
                 case "add":
                     addUser();
+                    getString("Press any key to continue");
                     break;
                 case "edit":
                     editUser();
+                    getString("Press any key to continue");
                     break;
                 case "delete":
                     deleteUser();
+                    getString("Press any key to continue");
                     break;
                 case "quit":
                     exit = true;
@@ -39,6 +42,7 @@ public class UserAdmin {
                     break;
                 default:
                     System.out.println("\nInvalid action, please try again\n");
+                    getString("Press any key to continue");
             }
         }
     }

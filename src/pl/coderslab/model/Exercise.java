@@ -47,8 +47,8 @@ public class Exercise {
     @Override
     public String toString() {
         return  "\nid: " + id +
-                "  | title=: " + title+
-                "  | description: " + description;
+                "  | title: " + title+
+                "\ndescription: " + description+'\n';
     }
 
 
@@ -120,6 +120,28 @@ public class Exercise {
             String sql = "SELECT * FROM exercise";
             PreparedStatement preparedStatement;
             preparedStatement = DbManager.getInstance().getConnection().prepareStatement(sql);
+            ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next()) {
+                Exercise exercise = new Exercise();
+                exercise.id = rs.getInt("id");
+                exercise.title = rs.getString("title");
+                exercise.description = rs.getString("description");
+                exercises.add(exercise);
+            }
+            return exercises;
+        } catch (SQLException e) { e.printStackTrace(); }
+        return null;
+    }
+
+    public static ArrayList<Exercise> loadAllNonSolvedByUserId(long userId) {
+        try {
+            ArrayList<Exercise> exercises = new ArrayList<>();
+            String sql = "SELECT exercise.* FROM exercise " +
+                         "INNER JOIN solution ON exercise.id = solution.exercise_id" +
+                         " WHERE (solution.users_id =? AND solution.updated=null)";
+            PreparedStatement preparedStatement;
+            preparedStatement = DbManager.getInstance().getConnection().prepareStatement(sql);
+            preparedStatement.setLong(1, userId);
             ResultSet rs = preparedStatement.executeQuery();
             while(rs.next()) {
                 Exercise exercise = new Exercise();
