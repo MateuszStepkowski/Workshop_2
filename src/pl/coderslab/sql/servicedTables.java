@@ -16,8 +16,8 @@ public class servicedTables {
             "  user_group_id INT(11),"+
             "  PRIMARY KEY(id),"+
             "  FOREIGN KEY(user_group_id) REFERENCES user_group(id));";
-    String excercise_Table =
-            "CREATE TABLE excercise(" +
+    String exercise_Table =
+            "CREATE TABLE exercise(" +
                     "  id INT(11) NOT NULL AUTO_INCREMENT," +
                     "  title VARCHAR(255)," +
                     "  description TEXT," +
@@ -28,9 +28,9 @@ public class servicedTables {
                     "  created DATETIME," +
                     "  updated DATETIME," +
                     "  description TEXT," +
-                    "  excercise_id INT(11)," +
+                    "  exercise_id INT(11)," +
                     "  users_id BIGINT(20)," +
                     "  PRIMARY KEY(id)," +
-                    "  FOREIGN KEY(excercise_id) REFERENCES excercise(id)," +
+                    "  FOREIGN KEY(exercise_id) REFERENCES exercise(id)," +
                     "  FOREIGN KEY(users_id) REFERENCES users(id));";
 }
