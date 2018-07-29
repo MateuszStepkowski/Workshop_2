@@ -7,7 +7,7 @@ import pl.coderslab.model.User;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class SolutionAdminByUser {
+public class UserApp {
 
     private static Scanner scan = new Scanner(System.in);
 

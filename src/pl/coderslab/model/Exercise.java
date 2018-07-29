@@ -138,7 +138,7 @@ public class Exercise {
             ArrayList<Exercise> exercises = new ArrayList<>();
             String sql = "SELECT exercise.* FROM exercise " +
                          "INNER JOIN solution ON exercise.id = solution.exercise_id" +
-                         " WHERE (solution.users_id =? AND solution.updated=null)";
+                         " WHERE (solution.users_id =? AND solution.updated IS NULL)";
             PreparedStatement preparedStatement;
             preparedStatement = DbManager.getInstance().getConnection().prepareStatement(sql);
             preparedStatement.setLong(1, userId);
