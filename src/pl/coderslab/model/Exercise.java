@@ -46,11 +46,9 @@ public class Exercise {
 
     @Override
     public String toString() {
-        return "Exercise{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+        return  "\nid: " + id +
+                "  | title=: " + title+
+                "  | description: " + description;
     }
 
 

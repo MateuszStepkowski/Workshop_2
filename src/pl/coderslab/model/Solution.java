@@ -7,11 +7,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Solution {
 
     private int id;
-    private Date created;
+    private  Date created;
     private Date updated;
     private String description;
     private int exercise_id;
@@ -21,10 +22,7 @@ public class Solution {
 
     public Solution() {}
 
-    public Solution(Date created, Date updated, String description, int exercise_id, long users_id) {
-        this.created = created;
-        this.updated = updated;
-        this.description = description;
+    public Solution(int exercise_id, long users_id) {
         this.exercise_id = exercise_id;
         this.users_id = users_id;
     }
@@ -34,19 +32,11 @@ public class Solution {
         return created;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-
 
     public Date getUpdated() {
         return updated;
     }
 
-    public void setUpdated(Date updated) {
-        this.updated = updated;
-    }
 
 
 
@@ -84,30 +74,36 @@ public class Solution {
         return id;
     }
 
+    @Override
+    public String toString() {
+        return "\nSolution id: " + id +
+                "  | created: " + created +
+                "  | updated: " + updated +
+                "\ndescription:\n" + description + '\n' +
+                "exercise_id: " + exercise_id +
+                "  |  users_id: " + users_id;
+    }
 
     public void saveToDB() {
         if(this.id  == 0) {
             try {
-                String sql = "INSERT INTO solution(created, updated, description, exercise_id, users_id) " +
+                String sql = "INSERT INTO solution(created, exercise_id, users_id) " +
                              "VALUES (?,?,?,?,?)";
                 String generatedColumns[] = {"ID"};
                 PreparedStatement preparedStatement;
                 preparedStatement = DbManager.getInstance().getConnection().prepareStatement(sql, generatedColumns);
-                preparedStatement.setDate(1, this.created);
-                preparedStatement.setDate(2, this.updated);
-                preparedStatement.setString(3, this.description);
+                preparedStatement.setDate(1, new Date((Calendar.getInstance().getTime()).getTime()));
                 preparedStatement.setInt(4, this.exercise_id);
                 preparedStatement.setLong(5, this.users_id);
                 preparedStatement.executeUpdate();
             } catch (SQLException e) {e.printStackTrace(); }
         } else {
             try {
-                String sql = "UPDATE solution SET created =?, updated =?, description =?, exercise_id =?, " +
+                String sql = "UPDATE solution SET updated =?, description =?, exercise_id =?, " +
                              "users_id =? WHERE id =?";
                 PreparedStatement preparedStatement;
                 preparedStatement = DbManager.getInstance().getConnection().prepareStatement(sql);
-                preparedStatement.setDate(1, this.created);
-                preparedStatement.setDate(2, this.updated);
+                preparedStatement.setDate(2, new Date((Calendar.getInstance().getTime()).getTime()));
                 preparedStatement.setString(3, this.description);
                 preparedStatement.setInt(4, this.exercise_id);
                 preparedStatement.setLong(5, this.users_id);

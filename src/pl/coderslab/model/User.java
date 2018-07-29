@@ -61,13 +61,11 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", user_group_id=" + user_group_id +
-                '}';
+        return  "\nid: " + id +
+                "  | username='" + username +
+                "  | password='" + password +
+                "  | email='" + email+
+                "  | user_group_id=" + user_group_id;
     }
 
     public void saveToDB(){
@@ -114,16 +112,16 @@ public class User {
         }catch (SQLException e){e.printStackTrace();}
     }
 
-    public static User loadById(int id){
+    public static User loadById(long id){
         try {
             String sql = "SELECT * FROM users WHERE id = ?";
             PreparedStatement preparedStatement;
             preparedStatement = DbManager.getInstance().getConnection().prepareStatement(sql);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setLong(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             if(rs.next()){
                 User user = new User();
-                user.id = rs.getInt("id");
+                user.id = rs.getLong("id");
                 user.username = rs.getString("username");
                 user.email = rs.getString("email");
                 user.password = rs.getString("password");
@@ -142,7 +140,7 @@ public class User {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()){
                 User user = new User();
-                user.id = rs.getInt("id");
+                user.id = rs.getLong("id");
                 user.username = rs.getString("username");
                 user.email = rs.getString("email");
                 user.password = rs.getString("password");
